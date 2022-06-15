@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux/es/exports';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-// import { nanoid } from 'nanoid';
 import initialContacts from './contacts.json';
 import { addContact } from 'store/contactsSlice';
 
@@ -22,7 +21,12 @@ export const App = () => {
   const [contact, setContact] = useState('');
   const dispatch = useDispatch;
 
-  const newContact = () => dispatch(addContact(contact));
+  const newContact = () => dispatch(addContact({ contact }));
+
+  const fake = () => {
+    setContact(fake);
+  };
+  console.log(fake);
 
   // const addContact = data => {
   //   const { name, number } = data;
