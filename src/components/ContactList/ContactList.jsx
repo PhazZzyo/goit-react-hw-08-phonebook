@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux/es/exports';
 import style from './ContactList.module.css';
 
 const ContactList = () => {
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(state => state.contacts.items);
+  console.log(contacts);
   return (
     <ul className={style.ContactList__list}>
       {contacts.map(({ contact }) => (
