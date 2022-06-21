@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-import shortid from 'shortid';
+import {nanoid} from 'nanoid';
 import initialContacts from './contacts.json';
 
 const INITIAL_STATE = {
@@ -21,7 +21,7 @@ export const App = () => {
       return;
     }
     const newContact = {
-      id: shortid.generate(),
+      id: nanoid(),
       name,
       number,
     };
