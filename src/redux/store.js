@@ -19,18 +19,14 @@ const contactsPersistConfig = {
   blacklist: ['filter'],
 };
 
-const middleWare = [
-  ...getDefaultMiddleware({
+const store = configureStore({
+  reducer: { contacts: persistReducer(contactsPersistConfig, contactsReducer) },
+  middleWare: getDefaultMiddleware({
     serializableCheck: {
       ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
   logger,
-];
-
-const store = configureStore({
-  reducer: { contacts: persistReducer(contactsPersistConfig, contactsReducer) },
-  middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
 
