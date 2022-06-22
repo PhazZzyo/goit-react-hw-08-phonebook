@@ -1,67 +1,27 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-import {nanoid} from 'nanoid';
-import initialContacts from './contacts.json';
-
-const INITIAL_STATE = {
-  contacts: initialContacts,
-  filter: '',
-};
+import { getContacts, getFilter } from 'redux/contacts/contactsSelectors';
 
 export const App = () => {
-  const [filter, setFilter] = useState(INITIAL_STATE.filter);
-  const [contacts, setContacts] = useState(INITIAL_STATE.contacts);
-
-  const addContact = data => {
-    const { name, number } = data;
-    if (contacts.find(contact => contact.name === name)) {
-      alert(`${name} is already in contacts`);
-      return;
-    }
-    const newContact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-
-    setContacts([newContact, ...contacts]);
-  };
-
-  const removeContact = id => {
-    setContacts(contacts.filter(contact => contact.id !== id));
-  };
-
-  const onChangeFilter = event => {
-    setFilter(event.currentTarget.value);
-  };
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
 
   const normalizedFilter = filter.toLowerCase();
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter)
   );
 
-  useEffect(() => {
-    const localContacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(localContacts);
-    if (parsedContacts) {
-      setContacts(parsedContacts);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
   return (
     <>
       <h1>Phonebook</h1>
-      <ContactForm handleSubmit={addContact} />
+      <ContactForm />
 
       <h2>Contacts</h2>
-      <Filter value={filter} onChange={onChangeFilter} />
-      <ContactList contacts={filteredContacts} onDelete={removeContact} />
+      <Filter value={filter} />
+      <ContactList contacts={filteredContacts} />
     </>
   );
 };
