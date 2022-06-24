@@ -1,5 +1,6 @@
-.ContactList__list {    
-    max-width: 480px;
+.ContactList__list {
+    padding: 0;
+    max-width: 520px;
     border-radius: 5px;
-    background-color: #f2f2f2;    
+    background-color: #f2f2f2;
 }

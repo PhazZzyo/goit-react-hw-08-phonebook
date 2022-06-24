@@ -1,11 +1,14 @@
+import { useSelector } from 'react-redux';
+import { getFilteredContacts } from 'redux/contacts/contactsSelectors';
 import ContactListElement from './ContactListElement/ContactListElement';
 import PropTypes from 'prop-types';
 import style from './ContactList.module.css';
 
-const ContactList = ({ contacts }) => {
+const ContactList = () => {
+  const filteredContacts = useSelector(getFilteredContacts);
   return (
     <ul className={style.ContactList__list}>
-      {contacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, number }) => (
         <ContactListElement key={id} id={id} name={name} number={number} />
       ))}
     </ul>
@@ -13,7 +16,7 @@ const ContactList = ({ contacts }) => {
 };
 
 ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
+  filteredContacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
