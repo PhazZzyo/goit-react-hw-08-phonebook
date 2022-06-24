@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-import contactsReducer from '../redux/contacts/contactsReducers';
+import contactsReducer from 'redux/contacts/contactsReducers';
 import {
   persistStore,
   persistReducer,
@@ -12,8 +12,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-/// absolute import !!!!!! https://youtu.be/wprYz1i5MI0?t=2637
 
 const contactsPersistConfig = {
   key: 'contacts',
