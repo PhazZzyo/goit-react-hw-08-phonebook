@@ -13,6 +13,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+/// absolute import !!!!!! https://youtu.be/wprYz1i5MI0?t=2637
+
 const contactsPersistConfig = {
   key: 'contacts',
   storage,
