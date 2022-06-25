@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { addContact } from 'redux/contacts/contactsActions';
+import {
+  useGetContactsQuery,
+  useAddContactMutation,
+} from 'services/contactsAPI';
+// import { addContact } from 'redux/contacts/contactsActions';
 import style from './ContactForm.module.css';
 
 const INITIAL_STATE = {
@@ -15,11 +19,20 @@ const ContactForm = () => {
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
-  const dispatch = useDispatch();
+  const { data: contacts } = useGetContactsQuery();
+  const [addContact, { isLoading }] = useAddContactMutation();
 
   const onSubmit = event => {
     event.preventDefault();
-    dispatch(addContact({ name, number }));
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
+      return alert(`Contact ${name} is already exist`);
+    }
+    const id = nanoid();
+    addContact({ id, name, number });
     reset();
   };
 

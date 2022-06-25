@@ -1,22 +1,27 @@
-import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contacts/contactsActions';
+// import { useDispatch } from 'react-redux';
+// import { deleteContact } from 'redux/contacts/contactsActions';
+import { useDeleteContactMutation } from 'services/contactsAPI';
+import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
 import style from './ContactListElement.module.css';
 
 const ContactListElement = ({ id, name, number }) => {
-  const dispatch = useDispatch();
+  const [deleteContact, { isLoading }] = useDeleteContactMutation();
   return (
-    <li className={style.ContactList__item} key={id}>
-      <span className={style.ContactList__text}>
-        {name}: {number}
-      </span>
-      <button
-        className={style.ContactList__button}
-        onClick={() => dispatch(deleteContact(id))}
-      >
-        Delete
-      </button>
-    </li>
+    <>
+      {/* {isLoading} && <Loader color={'#3f51b5'} size={32} /> */}
+      <li className={style.ContactList__item} key={id}>
+        <span className={style.ContactList__text}>
+          {name}: {number}
+        </span>
+        <button
+          className={style.ContactList__button}
+          onClick={() => deleteContact(id)}
+        >
+          Delete
+        </button>
+      </li>
+    </>
   );
 };
 

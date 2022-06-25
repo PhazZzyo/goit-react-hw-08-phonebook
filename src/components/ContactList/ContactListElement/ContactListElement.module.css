@@ -1,6 +1,7 @@
-.ContactList__item {    
-    padding: 12px 20px;
-    display: flex;    
+.ContactList__item {
+    padding: 5px;
+    display: flex;
+    border-bottom: 1px solid #999;
 }
 
 .ContactList__text {

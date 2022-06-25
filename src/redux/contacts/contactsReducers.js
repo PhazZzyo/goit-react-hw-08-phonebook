@@ -15,7 +15,7 @@ const items = createReducer([], {
 });
 
 const filter = createReducer('', {
-  [filterContact]: (_, { payload }) => payload,
+  [filterContact.toString()]: (_, { payload }) => payload,
 });
 
 export default combineReducers({ items, filter });
