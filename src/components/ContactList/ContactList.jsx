@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 import style from './ContactList.module.css';
 
 const ContactList = () => {
-  const filter = useSelector(getFilter);
+  // const filter = useSelector(getFilter);
+  const filter = useSelector(state => state.filter);
   const {
     data: filteredContacts,
     isFetching,
