@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterContact } from 'redux/contacts/contactsActions';
-// import { onChangeFilter } from 'redux/contacts/contactsSlice';
 import { getFilter } from 'redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
 

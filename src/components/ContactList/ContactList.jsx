@@ -7,14 +7,14 @@ import PropTypes from 'prop-types';
 import style from './ContactList.module.css';
 
 const ContactList = () => {
-  // const filter = useSelector(getFilter);
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector(getFilter);
+
   const {
     data: filteredContacts,
     isFetching,
     isError,
   } = useGetContactsQuery(filter);
-  console.log(filter);
+
   return (
     <>
       {isFetching && <Loader color={'#3f51b5'} size={32} />}
