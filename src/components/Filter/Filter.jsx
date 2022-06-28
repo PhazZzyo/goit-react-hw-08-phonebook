@@ -9,7 +9,6 @@ import style from './Filter.module.css';
 const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter);
-  console.log(filter);
 
   return (
     <div className={style.FilterContainer}>

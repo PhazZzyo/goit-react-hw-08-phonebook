@@ -16,7 +16,6 @@ const ContactList = () => {
     contacts.filter(contact => contact.name.toLowerCase().includes(filter));
 
   const isContactsEmpty = filteredContacts.length !== 0 && !isError;
-  console.log(isContactsEmpty);
 
   return (
     <>
