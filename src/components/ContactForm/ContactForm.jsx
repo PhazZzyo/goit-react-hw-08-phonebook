@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import {
   useGetContactsQuery,
@@ -20,7 +19,8 @@ const ContactForm = () => {
   const nameInputId = nanoid();
   const numberInputId = nanoid();
   const { data: contacts } = useGetContactsQuery();
-  const [addContact, { isLoading }] = useAddContactMutation();
+  // const [addContact, { isLoading }] = useAddContactMutation();
+  const [addContact] = useAddContactMutation();
 
   const onSubmit = event => {
     event.preventDefault();
