@@ -4,7 +4,7 @@ import {
   useGetContactsQuery,
   useAddContactMutation,
 } from 'services/contactsAPI';
-// import { addContact } from 'redux/contacts/contactsActions';
+
 import style from './ContactForm.module.css';
 
 const INITIAL_STATE = {
@@ -19,7 +19,6 @@ const ContactForm = () => {
   const nameInputId = nanoid();
   const numberInputId = nanoid();
   const { data: contacts } = useGetContactsQuery();
-  // const [addContact, { isLoading }] = useAddContactMutation();
   const [addContact] = useAddContactMutation();
 
   const onSubmit = event => {
