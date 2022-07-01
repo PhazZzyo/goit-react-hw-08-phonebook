@@ -1,17 +1,72 @@
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
+import { useSelector, useDispatch } from 'react-redux/es/exports';
+import { useEffect, lazy, Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import PrivateRoute from 'routes/PrivateRoutes/PrivateRoutes';
+import PublicRoute from 'routes/PublicRoutes/PublicRouters';
+import { authSelectors } from 'redux/auth';
+import { authOperations } from 'redux/auth';
+import Loader from './Loader/Loader';
+import Header from './Header/Header';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(
+    authSelectors.isFetchingCurrentUser
+  );
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
-      <h1>Phonebook app</h1>
-      <h2>Add new contact</h2>
-      <ContactForm />
-
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
+      {!isFetchingCurrentUser && (
+        <>
+          <Header />
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <PublicRoute>
+                    <HomePage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="register"
+                element={
+                  <PublicRoute redirectTo="/contacts" restricted>
+                    <RegistrationPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="login"
+                element={
+                  <PublicRoute redirectTo="/contacts" restricted>
+                    <LoginPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="contacts"
+                element={
+                  <PrivateRoute>
+                    <ContactsPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </Suspense>
+        </>
+      )}
     </>
   );
 };
