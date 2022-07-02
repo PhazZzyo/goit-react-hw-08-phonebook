@@ -29,7 +29,7 @@ const ContactList = () => {
         </ul>
       ) : (
         <ul className={style.ContactList__list}>
-          <p>The phonebook is empty</p>
+          <p>No contacts found...</p>
         </ul>
       )}
     </>
