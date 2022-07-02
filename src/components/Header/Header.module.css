@@ -1,4 +1,5 @@
-.header {    
+.header {
+    min-width: 440px;
     margin: 0 auto;
     max-width: 1024px;
     background-color: #f2f2f2;
