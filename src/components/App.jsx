@@ -28,7 +28,7 @@ export const App = () => {
       {!isFetchingCurrentUser && (
         <>
           <Header />
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<Loader color={'#3f51b5'} size={32} />}>
             <Routes>
               <Route
                 path="/"

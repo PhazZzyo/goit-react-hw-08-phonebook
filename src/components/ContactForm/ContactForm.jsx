@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
+import { Notify } from 'notiflix';
 import {
   useGetContactsQuery,
   useAddContactMutation,
@@ -28,7 +29,7 @@ const ContactForm = () => {
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      return alert(`Contact ${name} is already exist`);
+      return Notify.failure(`Contact '${name}' is already exist`);
     }
     const id = nanoid();
     addContact({ id, name, number });

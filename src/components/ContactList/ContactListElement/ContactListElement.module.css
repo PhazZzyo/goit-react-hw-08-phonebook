@@ -12,9 +12,9 @@
 .ContactList__button {
     width: 100px;
     height: 32px;
-    background-color: #4CAF50;
     color: white;
-    font-size: 16px;    
+    background-color: #4CAF50;    
+    font-size: 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;    

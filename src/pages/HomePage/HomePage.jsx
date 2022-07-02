@@ -12,8 +12,10 @@ export default function HomePage() {
         <Navigate to="/contacts" />
       ) : (
         <div className={styles.section}>
-          <h1 className={styles.title}>Phonebook app.</h1>
-          <p className={styles.text}>Please register and login.</p>
+          <h1 className={styles.title}>Phonebook app</h1>
+          <p className={styles.text}>
+            Please register or log in to start to work with the app.
+          </p>
         </div>
       )}
     </>

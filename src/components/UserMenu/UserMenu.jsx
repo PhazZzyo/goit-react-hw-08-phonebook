@@ -12,7 +12,7 @@ export default function UserMenu() {
   return (
     <div className={styles.nav}>
       <div className={styles.menu}>
-        <p className={styles.text}>{name}</p>
+        <p className={styles.text}>Current user: {name}</p>
         <p className={styles.text}>{email}</p>
       </div>
       <button

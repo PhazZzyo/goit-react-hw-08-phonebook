@@ -65,7 +65,7 @@ export default function RegistrationPage() {
           />
         </label>
         <button type="submit" className={styles.button}>
-          Registration
+          Register
         </button>
       </form>
     </div>

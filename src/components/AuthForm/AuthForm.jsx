@@ -23,7 +23,7 @@ export default function AuthForm() {
             : styles.button;
         }}
       >
-        Registration
+        Register
       </NavLink>
     </div>
   );
